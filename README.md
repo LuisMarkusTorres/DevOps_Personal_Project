@@ -1,2 +1,2 @@
-# DevOps_Personal_Project
+# DevOps Personal Project
 A personal project to  create and showcase Docker and Kubernetes infrastructure for a sample app.
