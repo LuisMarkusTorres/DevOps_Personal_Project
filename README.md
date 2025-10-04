@@ -1,2 +1,2 @@
 # DevOps Personal Project
-A personal project to  create and showcase Docker and Kubernetes infrastructure for a sample app.
+A personal project to showcase DevOps infrastructure for a sample Flask app with a MySQL database.
