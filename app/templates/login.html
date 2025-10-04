@@ -11,11 +11,11 @@
     <form action="" method="POST">
         <label for="">
             <p>Type Username:</p>
-            <input type="text" name="username" id="username_input" required>
+            <input type="text" name="username" id="username_input" maxlength="50" required>
         </label>
         <label for="">
             <p>Type Password:</p>
-            <input type="password" name="pwd" id="pwd_input" minlength="8" required>
+            <input type="password" name="pwd" id="pwd_input" minlength="8" maxlength="128" required>
         </label>
         <button type="submit">Log In</button>
         <p class="linkpara">No account yet? <a href="/signup">Sign up!</a></p>
