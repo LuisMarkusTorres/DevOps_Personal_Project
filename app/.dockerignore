@@ -1,0 +1,2 @@
+# Needed for isolation in non-container environment (outside-of-Docker testing)
+venv/
