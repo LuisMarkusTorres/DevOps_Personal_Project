@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-app.config["SECRET_KEY"] = "supersecretkey"
+app.config["SECRET_KEY"] = os.environ.get('FLASK_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 
 def get_db_connection():
