@@ -5,3 +5,4 @@ services:
     image: 
     ports:
   db:
+    image:
