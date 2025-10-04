@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <link rel="stylesheet" href="../static/signup-login.css">
+    <title>Log In</title>
 </head>
 <body>
+    <h1>This site is the front-end for my <a href="https://github.com/LuisMarkusTorres/DevOps_Personal_Project">DevOps personal project!</a> Feel free to look through it and share your thoughts :)</h1>
     <form action="" method="POST">
         <label for="">
             <p>Type Username:</p>
-            <input type="text" name="username" id="username_input" required maxlength="50">
+            <input type="text" name="username" id="username_input" required>
         </label>
         <label for="">
             <p>Type Password:</p>
-            <input type="password" name="pwd" id="pwd_input" minlength="8" maxlength="128">
+            <input type="password" name="pwd" id="pwd_input" minlength="8" required>
         </label>
+        <button type="submit">Log In</button>
+        <p class="linkpara">No account yet? <a href="/signup">Sign up!</a></p>
     </form>
-
-    <p>No account yet? <a href="/signup">Sign up!</a></p>
 </body>
 </html>

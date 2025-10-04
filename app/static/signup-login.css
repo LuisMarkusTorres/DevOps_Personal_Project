@@ -1,0 +1,93 @@
+html {
+    height: 100%;
+}
+
+body {
+    box-sizing: border-box;
+    padding-bottom: 30vh;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 25px;
+    margin-top: 2rem;
+    margin-inline: 2rem;
+    color: white;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+label p {
+    margin: 0 0 5px 0;
+    font-weight: 600;
+    color: #333333;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #2575fc;
+    outline: none;
+}
+
+button {
+    padding: 12px;
+    background-color: #2575fc;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6a11cb;
+}
+
+.linkpara {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+    color: #555;
+}
+
+a {
+    color: white;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.linkpara > a {
+    color: #2575fc
+}
+
+.linkpara a:hover {
+    text-decoration: underline;
+}
