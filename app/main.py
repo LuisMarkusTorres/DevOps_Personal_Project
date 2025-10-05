@@ -11,7 +11,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
+        host="db",
         user=os.environ.get('PROJECT_DB_USER'),
         password=os.environ.get('PROJECT_DB_PWD'),
         database=os.environ.get('PROJECT_DB_DB')
