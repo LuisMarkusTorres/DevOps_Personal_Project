@@ -1,0 +1,44 @@
+services:
+  web:
+    build: ./app
+    depends_on:
+      - db
+    secrets:
+      - flask-key
+    environment:
+      FLASK_SECRET_KEY: /run/secrets/flask-key
+    expose:
+      - 5000
+      
+  db:
+    image: mysql:8
+    restart: always
+    secrets:
+      - db-password
+      - db-name
+    volumes:
+     - ./db/markus_db.sql:/docker-entrypoint-initdb.d/markus_db.sql
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db-password
+      MYSQL_DATABASE_FILE: /run/secrets/db-name
+    expose:
+      - 3306
+      - 33060
+    ports: 
+      - 3307:3306
+
+  proxy:
+    build: ./proxy
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+secrets:
+  db-password:
+    file: db/password.txt
+  db-name:
+    file: db/name.txt
+  flask-key:
+    file: app/key.txt
