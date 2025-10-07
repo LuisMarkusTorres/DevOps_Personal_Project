@@ -6,13 +6,14 @@ import os
 
 app = Flask(__name__)
 
-app.config["SECRET_KEY"] = os.environ.get('FLASK_SECRET_KEY') # Would be needed in prod for cookie security
+secret_path = os.environ.get('FLASK_SECRET_KEY')
+with open(secret_path) as f:
+    app.config["SECRET_KEY"] = f.read().strip() # Would be needed in prod for cookie security
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 
 def get_db_connection():
     return mysql.connector.connect(
         host="db",
-        user=os.environ.get('PROJECT_DB_USER'),
         password=os.environ.get('PROJECT_DB_PWD'),
         database=os.environ.get('PROJECT_DB_DB')
     )
