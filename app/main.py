@@ -11,11 +11,20 @@ with open(secret_path) as f:
     app.config["SECRET_KEY"] = f.read().strip() # Would be needed in prod for cookie security
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 
+def read_secret(path):
+    if path and os.path.exists(path):
+        with open(path) as f:
+            return f.read().strip()
+    return None
+
 def get_db_connection():
+    password = read_secret(os.environ.get("MYSQL_PASSWORD_FILE"))
+    database = read_secret(os.environ.get("MYSQL_DATABASE_FILE"))
     return mysql.connector.connect(
-        host="db",
-        password=os.environ.get('PROJECT_DB_PWD'),
-        database=os.environ.get('PROJECT_DB_DB')
+        host=os.environ.get("MYSQL_HOST", "db"),
+        user=os.environ.get("MYSQL_USER", "root"),
+        password=password,
+        database=database
     )
 
 def hash_password(password):
