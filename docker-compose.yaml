@@ -10,7 +10,7 @@ services:
       MYSQL_HOST: db
       MYSQL_USER: root
       MYSQL_PASSWORD_FILE: /run/secrets/db-password
-      MYSQL_DATABASE: MarkusDB
+      MYSQL_DATABASE: AppDB
       FLASK_SECRET_KEY: /run/secrets/flask-key
     expose:
       - 5000
@@ -21,10 +21,10 @@ services:
     secrets:
       - db-password
     volumes:
-     - ./db/markus_db.sql:/docker-entrypoint-initdb.d/markus_db.sql
+     - ./db/app_db.sql:/docker-entrypoint-initdb.d/app_db.sql
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db-password
-      MYSQL_DATABASE: MarkusDB
+      MYSQL_DATABASE: AppDB
     expose:
       - 3306
       - 33060
