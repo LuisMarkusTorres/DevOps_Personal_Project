@@ -6,20 +6,20 @@ import os
 
 app = Flask(__name__)
 
-secret_path = os.environ.get('FLASK_SECRET_KEY')
-with open(secret_path) as f:
-    app.config["SECRET_KEY"] = f.read().strip() # Would be needed in prod for cookie security
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
-
 def read_secret(path):
     if path and os.path.exists(path):
         with open(path) as f:
             return f.read().strip()
     return None
 
+secret_path = os.environ.get('FLASK_SECRET_KEY')
+app.config["SECRET_KEY"] = read_secret(secret_path) # Would be needed in prod for cookie security
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
+
 def get_db_connection():
     password = read_secret(os.environ.get("MYSQL_PASSWORD_FILE"))
-    database = read_secret(os.environ.get("MYSQL_DATABASE_FILE"))
+    database = os.environ.get("MYSQL_DATABASE")
+
     return mysql.connector.connect(
         host=os.environ.get("MYSQL_HOST", "db"),
         user=os.environ.get("MYSQL_USER", "root"),
@@ -32,18 +32,14 @@ def hash_password(password):
 
 @app.route("/")
 def index():
-    if session.get('loggedin'):
-        return redirect("/home")
     return redirect("/login")
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if session.get('loggedin'):
-        return redirect("/home")
 
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('pwd')
+        username = request.form.get('login_username')
+        password = request.form.get('login_pwd')
 
         db = get_db_connection()
         cursor = db.cursor(dictionary=True)
@@ -62,8 +58,8 @@ def login():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+        username = request.form.get('signup_username')
+        password = request.form.get('signup_pwd')
 
         db = get_db_connection()
         cursor = db.cursor()
