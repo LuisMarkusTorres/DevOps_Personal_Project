@@ -42,7 +42,5 @@ services:
 secrets:
   db-password:
     file: db/password.txt
-  db-name:
-    file: db/name.txt
   flask-key:
     file: app/key.txt
